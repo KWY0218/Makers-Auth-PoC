@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  server1:
+    build:
+      context: ./platform-back
+      dockerfile: Dockerfile
+    container_name: "platform-back"
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  server2:
+    build:
+      context: ./client-back
+      dockerfile: Dockerfile
+    container_name: "client-back"
+    ports:
+      - "8081:8081"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
