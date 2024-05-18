@@ -32,6 +32,7 @@ public class AuthController {
 
         return ResponseEntity
                 .status(302)
+                .contentType(MediaType.APPLICATION_JSON)
                 .location(new URI(redirectUrl + "?code=PlatformAuthorizeCode"))
                 .build();
     }
