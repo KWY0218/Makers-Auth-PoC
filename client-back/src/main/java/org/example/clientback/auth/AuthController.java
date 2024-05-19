@@ -9,19 +9,23 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
-    @PostMapping(
-            path = "/login",
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
-    )
-    public ResponseEntity<TokenResDto> token(AuthReqDto data) {
-        TokenResDto response = getToken(data);
+
+    @GetMapping("/authorize")
+    public ResponseEntity<TokenResDto> authorizeCode(
+            @RequestParam("grantType") String grantType,
+            @RequestParam("code") String code,
+            @RequestParam("client_id") String clientId,
+            @RequestParam("redirect_url") String redirectUrl
+    ) {
+        TokenResDto response = getToken(new AuthReqDto(grantType, code, clientId, redirectUrl));
         return ResponseEntity
                 .ok(response);
     }
