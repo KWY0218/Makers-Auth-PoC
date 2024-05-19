@@ -44,12 +44,9 @@ public class AuthController {
     public ResponseEntity<TokenResDto> token(
             AuthReqDto data
     ) {
-        System.out.println(data);
         String grantType = data.grantType();
-        System.out.println(grantType);
         assert grantType != null;
         if (!grantType.equals("authorizationCode")) return ResponseEntity.badRequest().build();
-        System.out.println("return after");
 
         return ResponseEntity
                 .ok(new TokenResDto("access token", "refresh token"));
