@@ -31,6 +31,7 @@ public class AuthController {
     }
 
     private TokenResDto getToken(AuthReqDto data) {
+        System.out.println("data is " + data);
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("grantType", data.grantType());
         parameters.add("code", data.code());
@@ -41,6 +42,12 @@ public class AuthController {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(parameters, headers);
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject("http://localhost:8080/token", entity, TokenResDto.class);
+        System.out.println("before");
+        try {
+            return restTemplate.postForObject("http://localhost:8080/token", entity, TokenResDto.class);
+        } catch (Exception e) {
+            System.out.println("error is " + e.getMessage());
+            return null;
+        }
     }
 }
