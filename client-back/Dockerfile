@@ -3,6 +3,7 @@ FROM amd64/amazoncorretto:17 AS BUILD
 WORKDIR /app
 
 COPY gradlew .
+RUN sed -i 's/\r$//' gradlew
 COPY gradle ./gradle
 COPY build.gradle .
 COPY settings.gradle .
