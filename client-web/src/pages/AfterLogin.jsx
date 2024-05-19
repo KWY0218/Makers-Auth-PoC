@@ -1,5 +1,4 @@
 import React from 'react'
-import { instance } from '../config/axios'
 import { useLocation } from 'react-router-dom';
 
 const AfterLogin = () => {
@@ -8,8 +7,8 @@ const AfterLogin = () => {
 
 
   const receivePlatformAuthCode = async (code) => {
-    const res = await instance.get(`/authorize?grantType=authorizationCode&code=1234&clientId=clientId&redirectUri=http://localhost:3001/afterLogin`);
-    console.log(res.data);
+    window.location.href = 'http://localhost:8081/authorize?grantType=authorizationCode&code=code&client_id=clientId&redirect_url=redirectUri';
+
   }
 
   return (
