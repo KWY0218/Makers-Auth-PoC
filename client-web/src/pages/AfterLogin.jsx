@@ -8,7 +8,7 @@ const AfterLogin = () => {
 
 
   const receivePlatformAuthCode = async (code) => {
-    const res = await instance.get(`/login`);
+    const res = await instance.get(`/authorize?grantType=authorizationCode&code=1234&clientId=clientId&redirectUri=http://localhost:3001/afterLogin`);
     console.log(res.data);
   }
 
