@@ -2,6 +2,7 @@ package org.example.platformback.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.example.platformback.auth.dto.request.AuthReqDto;
+import org.example.platformback.auth.dto.response.PlatformCodeResDto;
 import org.example.platformback.auth.dto.response.TokenResDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ import java.net.URISyntaxException;
 public class AuthController {
     private final AuthService authService;
 
-    @GetMapping("/authorize")
+    @GetMapping("/authorize302")
     public ResponseEntity<String> authorizeCode(
             @RequestParam("code") String code,
             @RequestParam("clientId") String clientId,
@@ -35,6 +36,20 @@ public class AuthController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .location(new URI(redirectUri + "?code=PlatformAuthorizeCode"))
                 .build();
+    }
+
+    @GetMapping("/authorize200")
+    public ResponseEntity<PlatformCodeResDto> authorizeCode2(
+            @RequestParam("code") String code,
+            @RequestParam("clientId") String clientId,
+            @RequestParam("redirectUri") String redirectUri
+    ) {
+        Long userId = authService.getUserId(code);
+        if (userId == null) return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .build();
+
+        return ResponseEntity.ok(new PlatformCodeResDto("PlatformAuthorizeCode"));
     }
 
     @PostMapping(
