@@ -7,7 +7,7 @@ const AfterLogin = () => {
 
 
   const receivePlatformAuthCode = async (code) => {
-    window.location.href = 'http://localhost:8081/authorize?grantType=authorizationCode&code=code&client_id=clientId&redirect_url=redirectUri';
+    window.location.href = `http://localhost:8081/login?grantType=authorizationCode&code=${code}&clientId=clientId&redirectUri=redirectUri`;
 
   }
 

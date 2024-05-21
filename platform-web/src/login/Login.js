@@ -3,10 +3,10 @@ import React from "react"
 function Login() {
 
     const successCase = () => {
-        window.location.href = "http://localhost:8080/authorize?code=1234&client_id=client_id&redirect_url=http://localhost:3001/afterLogin";
+        window.location.href = "http://localhost:8080/authorize?code=1234&clientId=client_id&redirectUri=http://localhost:3001/afterLogin";
     };
     const failCase = () => {
-        window.location.href = "http://localhost:8080/authorize?code=1&client_id=client_id&redirect_url=http://localhost:3001";
+        window.location.href = "http://localhost:8080/authorize?code=1&clientId=client_id&redirectUri=http://localhost:3001";
     };
 
     return (
