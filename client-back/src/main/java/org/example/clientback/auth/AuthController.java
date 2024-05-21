@@ -18,14 +18,14 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class AuthController {
 
-    @GetMapping("/authorize")
+    @GetMapping("/login")
     public ResponseEntity<TokenResDto> authorizeCode(
             @RequestParam("grantType") String grantType,
             @RequestParam("code") String code,
-            @RequestParam("client_id") String clientId,
-            @RequestParam("redirect_url") String redirectUrl
+            @RequestParam("clientId") String clientId,
+            @RequestParam("redirectUri") String redirectUri
     ) {
-        TokenResDto response = getToken(new AuthReqDto(grantType, code, clientId, redirectUrl));
+        TokenResDto response = getToken(new AuthReqDto(grantType, clientId, redirectUri, code));
         if (response == null) return ResponseEntity.badRequest().build();
         return ResponseEntity
                 .ok(response);

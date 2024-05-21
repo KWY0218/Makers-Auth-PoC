@@ -22,8 +22,8 @@ public class AuthController {
     @GetMapping("/authorize")
     public ResponseEntity<String> authorizeCode(
             @RequestParam("code") String code,
-            @RequestParam("client_id") String clientId,
-            @RequestParam("redirect_url") String redirectUrl
+            @RequestParam("clientId") String clientId,
+            @RequestParam("redirectUri") String redirectUri
     ) throws URISyntaxException {
         Long userId = authService.getUserId(code);
         if (userId == null) return ResponseEntity
@@ -33,7 +33,7 @@ public class AuthController {
         return ResponseEntity
                 .status(302)
                 .contentType(MediaType.APPLICATION_JSON)
-                .location(new URI(redirectUrl + "?code=PlatformAuthorizeCode"))
+                .location(new URI(redirectUri + "?code=PlatformAuthorizeCode"))
                 .build();
     }
 
@@ -44,9 +44,14 @@ public class AuthController {
     public ResponseEntity<TokenResDto> token(
             AuthReqDto data
     ) {
+        System.out.println("platform server /token api body is " + data);
+
         String grantType = data.grantType();
         assert grantType != null;
         if (!grantType.equals("authorizationCode")) return ResponseEntity.badRequest().build();
+
+        assert data.code() != null;
+        if (!data.code().equals("PlatformAuthorizeCode")) return ResponseEntity.notFound().build();
 
         return ResponseEntity
                 .ok(new TokenResDto("access token", "refresh token"));
