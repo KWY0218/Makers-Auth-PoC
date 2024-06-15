@@ -29,6 +29,6 @@ jobs:
       run: |
         cd platform-back
         chmod +x gradlew
-        ./gradlew build
+        ./gradlew clean --stacktrace --info build
       env:
         JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
