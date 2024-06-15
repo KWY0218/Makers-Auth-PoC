@@ -15,7 +15,7 @@ RUN ./gradlew build -x test
 
 FROM amd64/amazoncorretto:17
 
-WORKDIR /app
+WORKDIR /app/platform-back
 
 COPY --from=build /app/build/libs/platform-back-0.0.1-SNAPSHOT.jar /app/platform-back.jar
 
