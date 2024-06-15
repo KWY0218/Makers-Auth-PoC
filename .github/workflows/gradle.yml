@@ -24,4 +24,5 @@ jobs:
     - name: Build with Gradle Wrapper
       run: |
         cd platform-back
+        chmod +x gradlew
         ./gradlew build
