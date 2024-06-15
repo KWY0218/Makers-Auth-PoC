@@ -30,4 +30,5 @@ jobs:
         cd platform-back
         chmod +x gradlew
         ./gradlew build
-      
+      env:
+        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
