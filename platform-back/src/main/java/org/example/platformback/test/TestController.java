@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @Value("${jwt.secret}")
-    private String secretKey;
+    private String secretKey = "asd";
 
     @GetMapping("/test")
     public String test() {
