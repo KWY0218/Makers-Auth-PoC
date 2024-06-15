@@ -1,6 +1,7 @@
 package org.example.platformback.test;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class TestController {
     }
 
     @GetMapping("/secret")
-    public String secret() {
-        return "secret key is " + secretKey;
+    public ResponseEntity<String> secret() {
+        return ResponseEntity.ok("secret key is " + secretKey);
     }
 }
