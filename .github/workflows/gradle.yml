@@ -31,3 +31,10 @@ jobs:
         chmod +x gradlew
         export JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }} 
         ./gradlew clean --stacktrace --info build
+
+    - name: Upload test reports as artifacts
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: build/reports/tests
