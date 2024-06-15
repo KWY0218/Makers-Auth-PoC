@@ -43,5 +43,5 @@ jobs:
 
     - name: docker image 빌드 및 푸시
       run: |
-        docker build --platform linux/amd64 -t kwy0218/til -f Dockerfile .
+        docker build --platform linux/amd64 -t kwy0218/til -f ./platform-back/Dockerfile .
         docker push kwy0218/til
