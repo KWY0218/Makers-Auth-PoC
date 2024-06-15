@@ -29,8 +29,6 @@ jobs:
       run: |
         cd platform-back
         chmod +x gradlew
-
-    - name: Build with Gradle Wrapper
-      run: ./gradlew build
+        ./gradlew build
       env:
-        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+        JWT_SECRET_KEY: "\${{ secrets.JWT_SECRET_KEY }}\"
