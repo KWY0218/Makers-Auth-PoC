@@ -29,6 +29,5 @@ jobs:
       run: |
         cd platform-back
         chmod +x gradlew
+        export JWT_SECRET_KEY = ${{ secrets.JWT_SECRET_KEY }} 
         ./gradlew clean --stacktrace --info build
-      env:
-        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
