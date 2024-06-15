@@ -37,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: test-reports
-        path: build/reports/tests
+        path: /home/runner/work/Makers-Auth-PoC/Makers-Auth-PoC/platform-back/build/reports/tests/test/index.html
