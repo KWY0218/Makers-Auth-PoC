@@ -22,4 +22,6 @@ jobs:
         distribution: 'temurin'
 
     - name: Build with Gradle Wrapper
-      run: ./gradlew build
+      run: |
+        cd platform-back
+        ./gradlew build
