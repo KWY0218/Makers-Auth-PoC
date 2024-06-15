@@ -24,8 +24,11 @@ class TestControllerTest {
     @Test
     @DisplayName("secret key 조회 테스트")
     public void test() throws Exception {
-        mockMvc.perform(get("/secret").contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
+        try {
+            mockMvc.perform(get("/secret").contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+        } catch (AssertionError e) {
+            fail("테스트가 실패하였습니다: " + e.getMessage());
+        }
     }
 }
