@@ -28,7 +28,8 @@ class TestControllerTest {
             mockMvc.perform(get("/secret").contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isOk());
         } catch (AssertionError e) {
-            fail("테스트가 실패하였습니다: " + e.getMessage());
+            System.err.println("테스트가 실패하였습니다: " + e.getMessage());
+            throw e; // 실패를 다시 throw하여 테스트가 실패했음을 나타냄
         }
     }
 }
