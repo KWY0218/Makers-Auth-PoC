@@ -2,10 +2,10 @@
 FROM amd64/amazoncorretto:17
 
 # Set working directory for runtime stage
-WORKDIR /platform-back/app
+WORKDIR /app
 
 # Copy built JAR from build stage
-COPY /platform-back/app/build/libs/platform-back-0.0.1-SNAPSHOT.jar /platform-back/app/platform-back.jar
+COPY ./app/build/libs/platform-back-0.0.1-SNAPSHOT.jar /app/platform-back.jar
 
 # Set timezone and define command to run the application
 CMD ["java", "-Duser.timezone=Asia/Seoul", "-jar", "platform-back.jar"]
