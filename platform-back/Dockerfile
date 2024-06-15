@@ -1,6 +1,6 @@
 FROM amd64/amazoncorretto:17 AS BUILD
 
-WORKDIR /app
+WORKDIR /platform-back/app
 
 COPY gradlew .
 RUN sed -i 's/\r$//' gradlew
