@@ -29,8 +29,9 @@ jobs:
       run: |
         cd platform-back
         chmod +x gradlew
-        export JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
         ./gradlew clean build -x test
+      env:
+        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
 
     - name: Verify JAR file existence
       run: |
