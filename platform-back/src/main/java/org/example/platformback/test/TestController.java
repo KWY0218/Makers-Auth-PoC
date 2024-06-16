@@ -18,6 +18,7 @@ public class TestController {
 
     @GetMapping("/secret")
     public ResponseEntity<String> secret() {
+        System.out.println("secret key is " + secretKey);
         return ResponseEntity.ok("secret key is " + secretKey);
     }
 }
