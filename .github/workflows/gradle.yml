@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+env:
+  JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+
 jobs:
   build:
 
@@ -30,8 +33,6 @@ jobs:
         cd platform-back
         chmod +x gradlew
         ./gradlew clean build -x test
-      env:
-        JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
 
     - name: Verify JAR file existence
       run: |
